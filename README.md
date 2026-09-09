@@ -41,6 +41,14 @@ The project distinguishes confirmed evidence from analytical inference. Administ
 | Incident duration | 16 minutes 43 seconds |
 | Generated reports | Executive and technical |
 
+## Interactive Incident Dashboard
+
+The live dashboard presents incident severity, attack progression, MITRE ATT&CK coverage, Sigma detections, indicators and a searchable security-finding register.
+
+[Open CloudTrace AWS Incident Response Dashboard](https://amrabd-elaziz.github.io/cloudtrace-incident-response/)
+
+The dashboard data is generated automatically from the processed CloudTrail evidence and validated through GitHub Actions before deployment.
+
 ## Incident Overview
 
 | Attribute | Value |
@@ -258,6 +266,7 @@ python -m unittest discover -s tests -v
 - [Executive Incident Report](reports/executive/EXECUTIVE-INCIDENT-REPORT.md)
 - [Technical Incident Analysis](reports/technical/INCIDENT-ANALYSIS-REPORT.md)
 - [![CloudTrace Validation](https://github.com/AmrAbd-Elaziz/cloudtrace-incident-response/   actions/workflows/cloudtrace-validation.yml/badge.svg)](https://github.com/AmrAbd-Elaziz/ cloudtrace-incident-response/actions/workflows/cloudtrace-validation.yml)
+- [![Live Dashboard](https://img.shields.io/badge/Live-Incident%20Dashboard-3B9CFF)](https://amrabd-elaziz.github.io/cloudtrace-incident-response/)
 
 ## Security Engineering Decisions
 
