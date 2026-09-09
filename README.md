@@ -266,7 +266,6 @@ python -m unittest discover -s tests -v
 - [Executive Incident Report](reports/executive/EXECUTIVE-INCIDENT-REPORT.md)
 - [Technical Incident Analysis](reports/technical/INCIDENT-ANALYSIS-REPORT.md)
 - [![CloudTrace Validation](https://github.com/AmrAbd-Elaziz/cloudtrace-incident-response/   actions/workflows/cloudtrace-validation.yml/badge.svg)](https://github.com/AmrAbd-Elaziz/ cloudtrace-incident-response/actions/workflows/cloudtrace-validation.yml)
-- [![Live Dashboard](https://img.shields.io/badge/Live-Incident%20Dashboard-3B9CFF)](https://amrabd-elaziz.github.io/cloudtrace-incident-response/)
 
 ## Security Engineering Decisions
 
