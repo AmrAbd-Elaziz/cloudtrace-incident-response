@@ -47,7 +47,8 @@ jobs:
             scripts/analyze_incident.py \
             scripts/validate_detections.py \
             scripts/generate_executive_report.py \
-            scripts/generate_technical_report.py
+            scripts/generate_technical_report.py \
+            scripts/generate_dashboard_data.py
 
       - name: Validate raw CloudTrail JSON
         run: |
@@ -72,6 +73,18 @@ jobs:
       - name: Generate technical incident report
         run: python scripts/generate_technical_report.py
 
+      - name: Generate dashboard evidence
+        run: |
+          python scripts/generate_dashboard_data.py \
+            --assessment-date 2026-09-09
+
+      - name: Validate dashboard assets
+        run: |
+          python -m json.tool dashboard/data.json >/dev/null
+
+          test -s dashboard/index.html
+          test -s dashboard/styles.css
+          test -s dashboard/app.js
       - name: Validate generated JSON evidence
         run: |
           python -m json.tool \
@@ -140,7 +153,8 @@ jobs:
           git diff --exit-code -- \
             data/processed \
             reports/executive \
-            reports/technical
+            reports/technical \
+            dashboard/data.json
 
       - name: Upload incident evidence
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
@@ -155,5 +169,6 @@ jobs:
             docs/
             reports/executive/EXECUTIVE-INCIDENT-REPORT.md
             reports/technical/INCIDENT-ANALYSIS-REPORT.md
+            dashboard/
           if-no-files-found: error
           retention-days: 30

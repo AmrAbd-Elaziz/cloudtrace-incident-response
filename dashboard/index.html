@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <meta
+    name="description"
+    content="CloudTrace AWS incident detection and response dashboard"
+  >
+  <title>CloudTrace | AWS Incident Response Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="background-grid" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#overview" aria-label="CloudTrace home">
+      <span class="brand-mark" aria-hidden="true">
+        <span class="brand-ring"></span>
+        <span class="brand-core"></span>
+      </span>
+
+      <span>
+        <strong>CloudTrace</strong>
+        <small>Incident Response Lab</small>
+      </span>
+    </a>
+
+    <nav class="navigation" aria-label="Dashboard navigation">
+      <a href="#overview">Overview</a>
+      <a href="#attack-path">Attack Path</a>
+      <a href="#findings">Findings</a>
+      <a href="#evidence">Evidence</a>
+    </nav>
+
+    <a
+      class="github-link"
+      href="https://github.com/AmrAbd-Elaziz/cloudtrace-incident-response"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      View repository
+      <span aria-hidden="true">↗</span>
+    </a>
+  </header>
+
+  <main class="dashboard-shell">
+    <section id="overview" class="hero-section">
+      <div class="hero-copy">
+        <div class="eyebrow">
+          <span class="status-pulse" aria-hidden="true"></span>
+          AWS CLOUD INCIDENT ANALYSIS
+        </div>
+
+        <h1>
+          From CloudTrail events
+          <span>to defensible incident conclusions.</span>
+        </h1>
+
+        <p>
+          A reconstructed AWS identity-compromise scenario with
+          evidence-driven detections, MITRE ATT&amp;CK mapping,
+          Sigma validation and response reporting.
+        </p>
+
+        <div class="hero-tags" aria-label="Project capabilities">
+          <span>AWS CloudTrail</span>
+          <span>Detection Engineering</span>
+          <span>MITRE ATT&amp;CK</span>
+          <span>Incident Response</span>
+        </div>
+      </div>
+
+      <aside class="incident-card">
+        <div class="incident-card-header">
+          <span>INCIDENT CLASSIFICATION</span>
+          <span id="assessment-date">Loading...</span>
+        </div>
+
+        <div class="severity-display">
+          <span class="severity-icon" aria-hidden="true">!</span>
+
+          <div>
+            <span>SEVERITY</span>
+            <strong id="incident-severity">—</strong>
+          </div>
+        </div>
+
+        <dl class="incident-details">
+          <div>
+            <dt>Affected identity</dt>
+            <dd id="affected-identity">—</dd>
+          </div>
+
+          <div>
+            <dt>Created identity</dt>
+            <dd id="created-identity">—</dd>
+          </div>
+
+          <div>
+            <dt>Target resource</dt>
+            <dd id="target-resource">—</dd>
+          </div>
+
+          <div>
+            <dt>Incident window</dt>
+            <dd id="incident-window">—</dd>
+          </div>
+        </dl>
+      </aside>
+    </section>
+
+    <section
+      class="metric-grid"
+      aria-label="Incident metrics"
+    >
+      <article class="metric-card critical-accent">
+        <span class="metric-label">Critical Findings</span>
+        <strong id="critical-findings">—</strong>
+        <small>Immediate investigation</small>
+      </article>
+
+      <article class="metric-card">
+        <span class="metric-label">Events Analyzed</span>
+        <strong id="events-analyzed">—</strong>
+        <small>CloudTrail evidence</small>
+      </article>
+
+      <article class="metric-card">
+        <span class="metric-label">Detection Findings</span>
+        <strong id="detection-findings">—</strong>
+        <small>Contextual alerts</small>
+      </article>
+
+      <article class="metric-card">
+        <span class="metric-label">Attack Tactics</span>
+        <strong id="attack-tactics">—</strong>
+        <small>MITRE coverage</small>
+      </article>
+
+      <article class="metric-card">
+        <span class="metric-label">Sigma Rules</span>
+        <strong id="sigma-rule-count">—</strong>
+        <small>Validated detections</small>
+      </article>
+
+      <article class="metric-card success-accent">
+        <span class="metric-label">Analysis Status</span>
+        <strong class="text-status">Validated</strong>
+        <small>Automated tests passing</small>
+      </article>
+    </section>
+
+    <section id="attack-path" class="panel attack-panel">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">RECONSTRUCTED SEQUENCE</span>
+          <h2>Attack Progression</h2>
+        </div>
+
+        <div class="duration-chip">
+          <span>Incident duration</span>
+          <strong id="incident-duration">—</strong>
+        </div>
+      </div>
+
+      <div
+        id="attack-path-container"
+        class="attack-path"
+        aria-live="polite"
+      ></div>
+    </section>
+
+    <section class="analytics-grid">
+      <article class="panel">
+        <div class="section-heading compact-heading">
+          <div>
+            <span class="section-kicker">RISK PROFILE</span>
+            <h2>Severity Distribution</h2>
+          </div>
+        </div>
+
+        <div id="severity-chart" class="bar-chart"></div>
+      </article>
+
+      <article class="panel">
+        <div class="section-heading compact-heading">
+          <div>
+            <span class="section-kicker">BEHAVIORAL COVERAGE</span>
+            <h2>MITRE ATT&amp;CK Tactics</h2>
+          </div>
+        </div>
+
+        <div id="tactic-chart" class="bar-chart"></div>
+      </article>
+    </section>
+
+    <section id="findings" class="panel findings-panel">
+      <div class="section-heading findings-heading">
+        <div>
+          <span class="section-kicker">DETECTION EVIDENCE</span>
+          <h2>Finding Register</h2>
+        </div>
+
+        <span id="visible-findings" class="record-count">
+          Loading findings...
+        </span>
+      </div>
+
+      <div class="filter-bar">
+        <label class="search-field">
+          <span>Search findings</span>
+          <input
+            id="finding-search"
+            type="search"
+            placeholder="Finding, event, tactic or resource"
+            autocomplete="off"
+          >
+        </label>
+
+        <label class="select-field">
+          <span>Severity</span>
+          <select id="severity-filter">
+            <option value="all">All severities</option>
+            <option value="Critical">Critical</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+          </select>
+        </label>
+
+        <label class="select-field">
+          <span>Outcome</span>
+          <select id="outcome-filter">
+            <option value="all">All outcomes</option>
+            <option value="Success">Success</option>
+            <option value="Failed">Failed</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Finding</th>
+              <th>Event</th>
+              <th>Tactic</th>
+              <th>Severity</th>
+              <th>Outcome</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+
+          <tbody id="findings-table-body"></tbody>
+        </table>
+      </div>
+
+      <p id="empty-state" class="empty-state" hidden>
+        No findings match the selected filters.
+      </p>
+    </section>
+
+    <section id="evidence" class="evidence-grid">
+      <article class="panel">
+        <div class="section-heading compact-heading">
+          <div>
+            <span class="section-kicker">INCIDENT CONTEXT</span>
+            <h2>Indicators &amp; Entities</h2>
+          </div>
+        </div>
+
+        <div id="indicator-list" class="indicator-list"></div>
+      </article>
+
+      <article class="panel">
+        <div class="section-heading compact-heading">
+          <div>
+            <span class="section-kicker">DETECTION AS CODE</span>
+            <h2>Sigma Coverage</h2>
+          </div>
+        </div>
+
+        <div id="sigma-rule-list" class="sigma-list"></div>
+      </article>
+    </section>
+
+    <section class="panel conclusion-panel">
+      <div>
+        <span class="section-kicker">ANALYTICAL CONCLUSION</span>
+        <h2>Evidence before assumption.</h2>
+      </div>
+
+      <p>
+        The dataset confirms privileged persistence, audit-logging
+        disruption and S3 object access. Initial credential theft
+        and external data exfiltration are not independently proven
+        by the available evidence.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <strong>CloudTrace</strong>
+      <span>Built by Amr Abdelaziz</span>
+    </div>
+
+    <div class="footer-links">
+      <a
+        href="https://github.com/AmrAbd-Elaziz/cloudtrace-incident-response/blob/main/docs/INVESTIGATION.md"
+        target="_blank"
+      >
+        Investigation
+      </a>
+
+      <a
+        href="https://github.com/AmrAbd-Elaziz/cloudtrace-incident-response/blob/main/reports/executive/EXECUTIVE-INCIDENT-REPORT.md"
+        target="_blank"
+      >
+        Executive Report
+      </a>
+
+      <a
+        href="https://github.com/AmrAbd-Elaziz/cloudtrace-incident-response/blob/main/reports/technical/INCIDENT-ANALYSIS-REPORT.md"
+        target="_blank"
+      >
+        Technical Report
+      </a>
+    </div>
+  </footer>
+
+  <noscript>
+    <p class="noscript-message">
+      JavaScript is required to render the CloudTrace dashboard.
+    </p>
+  </noscript>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

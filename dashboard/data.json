@@ -1,0 +1,433 @@
+{
+  "project": "CloudTrace",
+  "assessment_date": "2026-09-09",
+  "incident": {
+    "title": "Suspected AWS IAM Credential Misuse",
+    "classification": "Critical",
+    "affected_identity": "backup-automation",
+    "created_identity": "system-support-backup",
+    "target_resource": "financial-transaction-archive",
+    "start_time": "2026-09-09T08:00:12Z",
+    "end_time": "2026-09-09T08:16:55Z",
+    "duration_seconds": 1003
+  },
+  "metrics": {
+    "events_analyzed": 12,
+    "detection_findings": 11,
+    "critical_findings": 6,
+    "high_findings": 2,
+    "medium_findings": 3,
+    "successful_operations": 11,
+    "failed_operations": 1,
+    "sigma_rules": 3,
+    "source_ip_indicators": 1
+  },
+  "severity_distribution": {
+    "Critical": 6,
+    "High": 2,
+    "Medium": 3,
+    "Low": 0
+  },
+  "mitre_tactics": {
+    "Discovery": 5,
+    "Persistence": 2,
+    "Privilege Escalation": 1,
+    "Defense Evasion": 2,
+    "Collection": 1
+  },
+  "indicators": {
+    "source_ip_addresses": [
+      "198.51.100.24"
+    ],
+    "observed_actors": [
+      "arn:aws:iam::111122223333:user/backup-automation"
+    ],
+    "created_users": [
+      "system-support-backup"
+    ],
+    "accessed_s3_buckets": [
+      "financial-transaction-archive"
+    ]
+  },
+  "sigma_rules": [
+    {
+      "file": "aws_administrator_policy_attachment.yml",
+      "title": "AWS AdministratorAccess Policy Attached to IAM Identity",
+      "level": "critical",
+      "status": "test",
+      "tags": [
+        "attack.persistence",
+        "attack.privilege-escalation",
+        "attack.t1098"
+      ]
+    },
+    {
+      "file": "aws_cloudtrail_logging_tampering.yml",
+      "title": "AWS CloudTrail Logging Tampering",
+      "level": "critical",
+      "status": "test",
+      "tags": [
+        "attack.defense-evasion",
+        "attack.t1562.008"
+      ]
+    },
+    {
+      "file": "aws_iam_user_creation.yml",
+      "title": "AWS IAM User Created",
+      "level": "high",
+      "status": "test",
+      "tags": [
+        "attack.persistence",
+        "attack.t1136.003"
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "sequence": "1",
+      "event_time": "2026-09-09T08:00:12Z",
+      "event_name": "GetCallerIdentity",
+      "event_source": "sts.amazonaws.com",
+      "actor": "arn:aws:iam::111122223333:user/backup-automation",
+      "source_ip": "198.51.100.24",
+      "resource": "Not specified",
+      "outcome": "Success",
+      "error_code": "",
+      "severity": "Informational",
+      "mitre_tactic": "Not mapped",
+      "mitre_technique": "Not mapped"
+    },
+    {
+      "sequence": "2",
+      "event_time": "2026-09-09T08:01:43Z",
+      "event_name": "ListUsers",
+      "event_source": "iam.amazonaws.com",
+      "actor": "arn:aws:iam::111122223333:user/backup-automation",
+      "source_ip": "198.51.100.24",
+      "resource": "Not specified",
+      "outcome": "Success",
+      "error_code": "",
+      "severity": "Medium",
+      "mitre_tactic": "Discovery",
+      "mitre_technique": "T1087.004 - Cloud Account"
+    },
+    {
+      "sequence": "3",
+      "event_time": "2026-09-09T08:02:10Z",
+      "event_name": "ListBuckets",
+      "event_source": "s3.amazonaws.com",
+      "actor": "arn:aws:iam::111122223333:user/backup-automation",
+      "source_ip": "198.51.100.24",
+      "resource": "Not specified",
+      "outcome": "Success",
+      "error_code": "",
+      "severity": "Medium",
+      "mitre_tactic": "Discovery",
+      "mitre_technique": "T1619 - Cloud Storage Object Discovery"
+    },
+    {
+      "sequence": "4",
+      "event_time": "2026-09-09T08:03:25Z",
+      "event_name": "GetAccountAuthorizationDetails",
+      "event_source": "iam.amazonaws.com",
+      "actor": "arn:aws:iam::111122223333:user/backup-automation",
+      "source_ip": "198.51.100.24",
+      "resource": "Not specified",
+      "outcome": "Success",
+      "error_code": "",
+      "severity": "High",
+      "mitre_tactic": "Discovery",
+      "mitre_technique": "T1087.004 - Cloud Account"
+    },
+    {
+      "sequence": "5",
+      "event_time": "2026-09-09T08:05:11Z",
+      "event_name": "CreateUser",
+      "event_source": "iam.amazonaws.com",
+      "actor": "arn:aws:iam::111122223333:user/backup-automation",
+      "source_ip": "198.51.100.24",
+      "resource": "userName=system-support-backup",
+      "outcome": "Success",
+      "error_code": "",
+      "severity": "Critical",
+      "mitre_tactic": "Persistence",
+      "mitre_technique": "T1136.003 - Cloud Account"
+    },
+    {
+      "sequence": "6",
+      "event_time": "2026-09-09T08:06:02Z",
+      "event_name": "CreateAccessKey",
+      "event_source": "iam.amazonaws.com",
+      "actor": "arn:aws:iam::111122223333:user/backup-automation",
+      "source_ip": "198.51.100.24",
+      "resource": "userName=system-support-backup",
+      "outcome": "Success",
+      "error_code": "",
+      "severity": "Critical",
+      "mitre_tactic": "Persistence",
+      "mitre_technique": "T1098.001 - Additional Cloud Credentials"
+    },
+    {
+      "sequence": "7",
+      "event_time": "2026-09-09T08:07:34Z",
+      "event_name": "AttachUserPolicy",
+      "event_source": "iam.amazonaws.com",
+      "actor": "arn:aws:iam::111122223333:user/backup-automation",
+      "source_ip": "198.51.100.24",
+      "resource": "userName=system-support-backup; policyArn=arn:aws:iam::aws:policy/AdministratorAccess",
+      "outcome": "Success",
+      "error_code": "",
+      "severity": "Critical",
+      "mitre_tactic": "Privilege Escalation",
+      "mitre_technique": "T1098 - Account Manipulation"
+    },
+    {
+      "sequence": "8",
+      "event_time": "2026-09-09T08:09:18Z",
+      "event_name": "StopLogging",
+      "event_source": "cloudtrail.amazonaws.com",
+      "actor": "arn:aws:iam::111122223333:user/backup-automation",
+      "source_ip": "198.51.100.24",
+      "resource": "Not specified",
+      "outcome": "Success",
+      "error_code": "",
+      "severity": "Critical",
+      "mitre_tactic": "Defense Evasion",
+      "mitre_technique": "T1562.008 - Disable Cloud Logs"
+    },
+    {
+      "sequence": "9",
+      "event_time": "2026-09-09T08:11:09Z",
+      "event_name": "GetBucketEncryption",
+      "event_source": "s3.amazonaws.com",
+      "actor": "arn:aws:iam::111122223333:user/backup-automation",
+      "source_ip": "198.51.100.24",
+      "resource": "bucketName=financial-transaction-archive",
+      "outcome": "Success",
+      "error_code": "",
+      "severity": "Medium",
+      "mitre_tactic": "Discovery",
+      "mitre_technique": "T1619 - Cloud Storage Object Discovery"
+    },
+    {
+      "sequence": "10",
+      "event_time": "2026-09-09T08:12:47Z",
+      "event_name": "ListObjects",
+      "event_source": "s3.amazonaws.com",
+      "actor": "arn:aws:iam::111122223333:user/backup-automation",
+      "source_ip": "198.51.100.24",
+      "resource": "bucketName=financial-transaction-archive",
+      "outcome": "Success",
+      "error_code": "",
+      "severity": "High",
+      "mitre_tactic": "Discovery",
+      "mitre_technique": "T1619 - Cloud Storage Object Discovery"
+    },
+    {
+      "sequence": "11",
+      "event_time": "2026-09-09T08:14:31Z",
+      "event_name": "GetObject",
+      "event_source": "s3.amazonaws.com",
+      "actor": "arn:aws:iam::111122223333:user/backup-automation",
+      "source_ip": "198.51.100.24",
+      "resource": "bucketName=financial-transaction-archive; key=2026/Q3/transaction-export.csv",
+      "outcome": "Success",
+      "error_code": "",
+      "severity": "Critical",
+      "mitre_tactic": "Collection",
+      "mitre_technique": "T1530 - Data from Cloud Storage"
+    },
+    {
+      "sequence": "12",
+      "event_time": "2026-09-09T08:16:55Z",
+      "event_name": "DeleteTrail",
+      "event_source": "cloudtrail.amazonaws.com",
+      "actor": "arn:aws:iam::111122223333:user/backup-automation",
+      "source_ip": "198.51.100.24",
+      "resource": "Not specified",
+      "outcome": "Failed",
+      "error_code": "AccessDenied",
+      "severity": "Critical",
+      "mitre_tactic": "Defense Evasion",
+      "mitre_technique": "T1562.008 - Disable Cloud Logs"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "CT-001",
+      "sequence": 2,
+      "event_time": "2026-09-09T08:01:43Z",
+      "title": "IAM user enumeration",
+      "severity": "Medium",
+      "event_name": "ListUsers",
+      "event_source": "iam.amazonaws.com",
+      "actor": "arn:aws:iam::111122223333:user/backup-automation",
+      "source_ip": "198.51.100.24",
+      "resource": "Not specified",
+      "outcome": "Success",
+      "error_code": null,
+      "mitre_tactic": "Discovery",
+      "mitre_technique": "T1087.004 - Cloud Account"
+    },
+    {
+      "finding_id": "CT-002",
+      "sequence": 3,
+      "event_time": "2026-09-09T08:02:10Z",
+      "title": "S3 bucket enumeration",
+      "severity": "Medium",
+      "event_name": "ListBuckets",
+      "event_source": "s3.amazonaws.com",
+      "actor": "arn:aws:iam::111122223333:user/backup-automation",
+      "source_ip": "198.51.100.24",
+      "resource": "Not specified",
+      "outcome": "Success",
+      "error_code": null,
+      "mitre_tactic": "Discovery",
+      "mitre_technique": "T1619 - Cloud Storage Object Discovery"
+    },
+    {
+      "finding_id": "CT-003",
+      "sequence": 4,
+      "event_time": "2026-09-09T08:03:25Z",
+      "title": "IAM authorization discovery",
+      "severity": "High",
+      "event_name": "GetAccountAuthorizationDetails",
+      "event_source": "iam.amazonaws.com",
+      "actor": "arn:aws:iam::111122223333:user/backup-automation",
+      "source_ip": "198.51.100.24",
+      "resource": "Not specified",
+      "outcome": "Success",
+      "error_code": null,
+      "mitre_tactic": "Discovery",
+      "mitre_technique": "T1087.004 - Cloud Account"
+    },
+    {
+      "finding_id": "CT-004",
+      "sequence": 5,
+      "event_time": "2026-09-09T08:05:11Z",
+      "title": "Unauthorized IAM user creation",
+      "severity": "Critical",
+      "event_name": "CreateUser",
+      "event_source": "iam.amazonaws.com",
+      "actor": "arn:aws:iam::111122223333:user/backup-automation",
+      "source_ip": "198.51.100.24",
+      "resource": "userName=system-support-backup",
+      "outcome": "Success",
+      "error_code": null,
+      "mitre_tactic": "Persistence",
+      "mitre_technique": "T1136.003 - Cloud Account"
+    },
+    {
+      "finding_id": "CT-005",
+      "sequence": 6,
+      "event_time": "2026-09-09T08:06:02Z",
+      "title": "New cloud access key created",
+      "severity": "Critical",
+      "event_name": "CreateAccessKey",
+      "event_source": "iam.amazonaws.com",
+      "actor": "arn:aws:iam::111122223333:user/backup-automation",
+      "source_ip": "198.51.100.24",
+      "resource": "userName=system-support-backup",
+      "outcome": "Success",
+      "error_code": null,
+      "mitre_tactic": "Persistence",
+      "mitre_technique": "T1098.001 - Additional Cloud Credentials"
+    },
+    {
+      "finding_id": "CT-006",
+      "sequence": 7,
+      "event_time": "2026-09-09T08:07:34Z",
+      "title": "Privileged IAM policy attached",
+      "severity": "Critical",
+      "event_name": "AttachUserPolicy",
+      "event_source": "iam.amazonaws.com",
+      "actor": "arn:aws:iam::111122223333:user/backup-automation",
+      "source_ip": "198.51.100.24",
+      "resource": "userName=system-support-backup; policyArn=arn:aws:iam::aws:policy/AdministratorAccess",
+      "outcome": "Success",
+      "error_code": null,
+      "mitre_tactic": "Privilege Escalation",
+      "mitre_technique": "T1098 - Account Manipulation"
+    },
+    {
+      "finding_id": "CT-007",
+      "sequence": 8,
+      "event_time": "2026-09-09T08:09:18Z",
+      "title": "CloudTrail logging disabled",
+      "severity": "Critical",
+      "event_name": "StopLogging",
+      "event_source": "cloudtrail.amazonaws.com",
+      "actor": "arn:aws:iam::111122223333:user/backup-automation",
+      "source_ip": "198.51.100.24",
+      "resource": "Not specified",
+      "outcome": "Success",
+      "error_code": null,
+      "mitre_tactic": "Defense Evasion",
+      "mitre_technique": "T1562.008 - Disable Cloud Logs"
+    },
+    {
+      "finding_id": "CT-008",
+      "sequence": 9,
+      "event_time": "2026-09-09T08:11:09Z",
+      "title": "S3 encryption configuration discovery",
+      "severity": "Medium",
+      "event_name": "GetBucketEncryption",
+      "event_source": "s3.amazonaws.com",
+      "actor": "arn:aws:iam::111122223333:user/backup-automation",
+      "source_ip": "198.51.100.24",
+      "resource": "bucketName=financial-transaction-archive",
+      "outcome": "Success",
+      "error_code": null,
+      "mitre_tactic": "Discovery",
+      "mitre_technique": "T1619 - Cloud Storage Object Discovery"
+    },
+    {
+      "finding_id": "CT-009",
+      "sequence": 10,
+      "event_time": "2026-09-09T08:12:47Z",
+      "title": "Sensitive bucket contents enumerated",
+      "severity": "High",
+      "event_name": "ListObjects",
+      "event_source": "s3.amazonaws.com",
+      "actor": "arn:aws:iam::111122223333:user/backup-automation",
+      "source_ip": "198.51.100.24",
+      "resource": "bucketName=financial-transaction-archive",
+      "outcome": "Success",
+      "error_code": null,
+      "mitre_tactic": "Discovery",
+      "mitre_technique": "T1619 - Cloud Storage Object Discovery"
+    },
+    {
+      "finding_id": "CT-010",
+      "sequence": 11,
+      "event_time": "2026-09-09T08:14:31Z",
+      "title": "Sensitive S3 object accessed",
+      "severity": "Critical",
+      "event_name": "GetObject",
+      "event_source": "s3.amazonaws.com",
+      "actor": "arn:aws:iam::111122223333:user/backup-automation",
+      "source_ip": "198.51.100.24",
+      "resource": "bucketName=financial-transaction-archive; key=2026/Q3/transaction-export.csv",
+      "outcome": "Success",
+      "error_code": null,
+      "mitre_tactic": "Collection",
+      "mitre_technique": "T1530 - Data from Cloud Storage"
+    },
+    {
+      "finding_id": "CT-011",
+      "sequence": 12,
+      "event_time": "2026-09-09T08:16:55Z",
+      "title": "Attempted CloudTrail deletion",
+      "severity": "Critical",
+      "event_name": "DeleteTrail",
+      "event_source": "cloudtrail.amazonaws.com",
+      "actor": "arn:aws:iam::111122223333:user/backup-automation",
+      "source_ip": "198.51.100.24",
+      "resource": "Not specified",
+      "outcome": "Failed",
+      "error_code": "AccessDenied",
+      "mitre_tactic": "Defense Evasion",
+      "mitre_technique": "T1562.008 - Disable Cloud Logs"
+    }
+  ]
+}
