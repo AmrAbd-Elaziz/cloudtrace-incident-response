@@ -1,0 +1,24 @@
+title: AWS CloudTrail Logging Tampering
+id: d41ec5e2-d172-4b75-96fb-65be0f51a990
+status: test
+description: Detects attempts to stop logging or delete an AWS CloudTrail trail.
+author: Amr Abdelaziz
+date: 2026-09-09
+references:
+  - https://attack.mitre.org/techniques/T1562/008/
+logsource:
+  product: aws
+  service: cloudtrail
+detection:
+  selection:
+    eventSource: cloudtrail.amazonaws.com
+    eventName:
+      - StopLogging
+      - DeleteTrail
+  condition: selection
+falsepositives:
+  - Authorized CloudTrail maintenance performed by an approved security administrator
+level: critical
+tags:
+  - attack.defense-evasion
+  - attack.t1562.008

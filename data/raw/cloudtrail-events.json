@@ -1,0 +1,289 @@
+{
+  "Records": [
+    {
+      "eventVersion": "1.11",
+      "eventTime": "2026-09-09T08:00:12Z",
+      "eventSource": "sts.amazonaws.com",
+      "eventName": "GetCallerIdentity",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "198.51.100.24",
+      "userAgent": "aws-cli/2.15.0",
+      "userIdentity": {
+        "type": "IAMUser",
+        "userName": "backup-automation",
+        "accessKeyId": "SYNTHETIC-ACCESS-KEY-001",
+        "accountId": "111122223333",
+        "arn": "arn:aws:iam::111122223333:user/backup-automation"
+      },
+      "requestParameters": null,
+      "responseElements": null,
+      "readOnly": true,
+      "managementEvent": true,
+      "eventID": "00000000-0000-4000-8000-000000000001"
+    },
+    {
+      "eventVersion": "1.11",
+      "eventTime": "2026-09-09T08:01:43Z",
+      "eventSource": "iam.amazonaws.com",
+      "eventName": "ListUsers",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "198.51.100.24",
+      "userAgent": "aws-cli/2.15.0",
+      "userIdentity": {
+        "type": "IAMUser",
+        "userName": "backup-automation",
+        "accessKeyId": "SYNTHETIC-ACCESS-KEY-001",
+        "accountId": "111122223333",
+        "arn": "arn:aws:iam::111122223333:user/backup-automation"
+      },
+      "requestParameters": null,
+      "responseElements": null,
+      "readOnly": true,
+      "managementEvent": true,
+      "eventID": "00000000-0000-4000-8000-000000000002"
+    },
+    {
+      "eventVersion": "1.11",
+      "eventTime": "2026-09-09T08:02:10Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "ListBuckets",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "198.51.100.24",
+      "userAgent": "aws-cli/2.15.0",
+      "userIdentity": {
+        "type": "IAMUser",
+        "userName": "backup-automation",
+        "accessKeyId": "SYNTHETIC-ACCESS-KEY-001",
+        "accountId": "111122223333",
+        "arn": "arn:aws:iam::111122223333:user/backup-automation"
+      },
+      "requestParameters": null,
+      "responseElements": null,
+      "readOnly": true,
+      "managementEvent": true,
+      "eventID": "00000000-0000-4000-8000-000000000003"
+    },
+    {
+      "eventVersion": "1.11",
+      "eventTime": "2026-09-09T08:03:25Z",
+      "eventSource": "iam.amazonaws.com",
+      "eventName": "GetAccountAuthorizationDetails",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "198.51.100.24",
+      "userAgent": "aws-cli/2.15.0",
+      "userIdentity": {
+        "type": "IAMUser",
+        "userName": "backup-automation",
+        "accessKeyId": "SYNTHETIC-ACCESS-KEY-001",
+        "accountId": "111122223333",
+        "arn": "arn:aws:iam::111122223333:user/backup-automation"
+      },
+      "requestParameters": null,
+      "responseElements": null,
+      "readOnly": true,
+      "managementEvent": true,
+      "eventID": "00000000-0000-4000-8000-000000000004"
+    },
+    {
+      "eventVersion": "1.11",
+      "eventTime": "2026-09-09T08:05:11Z",
+      "eventSource": "iam.amazonaws.com",
+      "eventName": "CreateUser",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "198.51.100.24",
+      "userAgent": "aws-cli/2.15.0",
+      "userIdentity": {
+        "type": "IAMUser",
+        "userName": "backup-automation",
+        "accessKeyId": "SYNTHETIC-ACCESS-KEY-001",
+        "accountId": "111122223333",
+        "arn": "arn:aws:iam::111122223333:user/backup-automation"
+      },
+      "requestParameters": {
+        "userName": "system-support-backup"
+      },
+      "responseElements": {
+        "user": {
+          "userName": "system-support-backup"
+        }
+      },
+      "readOnly": false,
+      "managementEvent": true,
+      "eventID": "00000000-0000-4000-8000-000000000005"
+    },
+    {
+      "eventVersion": "1.11",
+      "eventTime": "2026-09-09T08:06:02Z",
+      "eventSource": "iam.amazonaws.com",
+      "eventName": "CreateAccessKey",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "198.51.100.24",
+      "userAgent": "aws-cli/2.15.0",
+      "userIdentity": {
+        "type": "IAMUser",
+        "userName": "backup-automation",
+        "accessKeyId": "SYNTHETIC-ACCESS-KEY-001",
+        "accountId": "111122223333",
+        "arn": "arn:aws:iam::111122223333:user/backup-automation"
+      },
+      "requestParameters": {
+        "userName": "system-support-backup"
+      },
+      "responseElements": {
+        "accessKey": {
+          "accessKeyId": "REDACTED-SYNTHETIC-KEY",
+          "status": "Active"
+        }
+      },
+      "readOnly": false,
+      "managementEvent": true,
+      "eventID": "00000000-0000-4000-8000-000000000006"
+    },
+    {
+      "eventVersion": "1.11",
+      "eventTime": "2026-09-09T08:07:34Z",
+      "eventSource": "iam.amazonaws.com",
+      "eventName": "AttachUserPolicy",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "198.51.100.24",
+      "userAgent": "aws-cli/2.15.0",
+      "userIdentity": {
+        "type": "IAMUser",
+        "userName": "backup-automation",
+        "accessKeyId": "SYNTHETIC-ACCESS-KEY-001",
+        "accountId": "111122223333",
+        "arn": "arn:aws:iam::111122223333:user/backup-automation"
+      },
+      "requestParameters": {
+        "userName": "system-support-backup",
+        "policyArn": "arn:aws:iam::aws:policy/AdministratorAccess"
+      },
+      "responseElements": null,
+      "readOnly": false,
+      "managementEvent": true,
+      "eventID": "00000000-0000-4000-8000-000000000007"
+    },
+    {
+      "eventVersion": "1.11",
+      "eventTime": "2026-09-09T08:09:18Z",
+      "eventSource": "cloudtrail.amazonaws.com",
+      "eventName": "StopLogging",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "198.51.100.24",
+      "userAgent": "aws-cli/2.15.0",
+      "userIdentity": {
+        "type": "IAMUser",
+        "userName": "backup-automation",
+        "accessKeyId": "SYNTHETIC-ACCESS-KEY-001",
+        "accountId": "111122223333",
+        "arn": "arn:aws:iam::111122223333:user/backup-automation"
+      },
+      "requestParameters": {
+        "name": "organization-security-trail"
+      },
+      "responseElements": null,
+      "readOnly": false,
+      "managementEvent": true,
+      "eventID": "00000000-0000-4000-8000-000000000008"
+    },
+    {
+      "eventVersion": "1.11",
+      "eventTime": "2026-09-09T08:11:09Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "GetBucketEncryption",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "198.51.100.24",
+      "userAgent": "aws-cli/2.15.0",
+      "userIdentity": {
+        "type": "IAMUser",
+        "userName": "backup-automation",
+        "accessKeyId": "SYNTHETIC-ACCESS-KEY-001",
+        "accountId": "111122223333",
+        "arn": "arn:aws:iam::111122223333:user/backup-automation"
+      },
+      "requestParameters": {
+        "bucketName": "financial-transaction-archive"
+      },
+      "responseElements": null,
+      "readOnly": true,
+      "managementEvent": true,
+      "eventID": "00000000-0000-4000-8000-000000000009"
+    },
+    {
+      "eventVersion": "1.11",
+      "eventTime": "2026-09-09T08:12:47Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "ListObjects",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "198.51.100.24",
+      "userAgent": "aws-cli/2.15.0",
+      "userIdentity": {
+        "type": "IAMUser",
+        "userName": "backup-automation",
+        "accessKeyId": "SYNTHETIC-ACCESS-KEY-001",
+        "accountId": "111122223333",
+        "arn": "arn:aws:iam::111122223333:user/backup-automation"
+      },
+      "requestParameters": {
+        "bucketName": "financial-transaction-archive",
+        "prefix": "2026/Q3/"
+      },
+      "responseElements": null,
+      "readOnly": true,
+      "managementEvent": false,
+      "eventID": "00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "eventVersion": "1.11",
+      "eventTime": "2026-09-09T08:14:31Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "GetObject",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "198.51.100.24",
+      "userAgent": "aws-cli/2.15.0",
+      "userIdentity": {
+        "type": "IAMUser",
+        "userName": "backup-automation",
+        "accessKeyId": "SYNTHETIC-ACCESS-KEY-001",
+        "accountId": "111122223333",
+        "arn": "arn:aws:iam::111122223333:user/backup-automation"
+      },
+      "requestParameters": {
+        "bucketName": "financial-transaction-archive",
+        "key": "2026/Q3/transaction-export.csv"
+      },
+      "additionalEventData": {
+        "bytesTransferredOut": 52428800
+      },
+      "responseElements": null,
+      "readOnly": true,
+      "managementEvent": false,
+      "eventID": "00000000-0000-4000-8000-000000000011"
+    },
+    {
+      "eventVersion": "1.11",
+      "eventTime": "2026-09-09T08:16:55Z",
+      "eventSource": "cloudtrail.amazonaws.com",
+      "eventName": "DeleteTrail",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "198.51.100.24",
+      "userAgent": "aws-cli/2.15.0",
+      "userIdentity": {
+        "type": "IAMUser",
+        "userName": "backup-automation",
+        "accessKeyId": "SYNTHETIC-ACCESS-KEY-001",
+        "accountId": "111122223333",
+        "arn": "arn:aws:iam::111122223333:user/backup-automation"
+      },
+      "requestParameters": {
+        "name": "organization-security-trail"
+      },
+      "responseElements": null,
+      "errorCode": "AccessDenied",
+      "errorMessage": "Synthetic denial generated for training",
+      "readOnly": false,
+      "managementEvent": true,
+      "eventID": "00000000-0000-4000-8000-000000000012"
+    }
+  ]
+}

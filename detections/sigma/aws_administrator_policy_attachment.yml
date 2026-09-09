@@ -1,0 +1,28 @@
+title: AWS AdministratorAccess Policy Attached to IAM Identity
+id: 67f635b2-0e9e-47df-a7bc-ae6f68072cb8
+status: test
+description: Detects attachment of the AWS AdministratorAccess managed policy to an IAM identity.
+author: Amr Abdelaziz
+date: 2026-09-09
+references:
+  - https://attack.mitre.org/techniques/T1098/
+logsource:
+  product: aws
+  service: cloudtrail
+detection:
+  selection_event:
+    eventSource: iam.amazonaws.com
+    eventName:
+      - AttachUserPolicy
+      - AttachRolePolicy
+      - AttachGroupPolicy
+  selection_policy:
+    requestParameters.policyArn|endswith: ":policy/AdministratorAccess"
+  condition: selection_event and selection_policy
+falsepositives:
+  - Approved emergency or administrative access granted through a controlled workflow
+level: critical
+tags:
+  - attack.persistence
+  - attack.privilege-escalation
+  - attack.t1098

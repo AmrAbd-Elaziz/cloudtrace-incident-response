@@ -1,0 +1,14 @@
+{
+  "source_ip_addresses": [
+    "198.51.100.24"
+  ],
+  "observed_actors": [
+    "arn:aws:iam::111122223333:user/backup-automation"
+  ],
+  "created_users": [
+    "system-support-backup"
+  ],
+  "accessed_s3_buckets": [
+    "financial-transaction-archive"
+  ]
+}

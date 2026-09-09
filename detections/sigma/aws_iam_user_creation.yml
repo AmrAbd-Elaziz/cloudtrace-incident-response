@@ -1,0 +1,22 @@
+title: AWS IAM User Created
+id: b903ac41-156f-4720-a9a9-d44930cb9ee6
+status: test
+description: Detects creation of a new AWS IAM user that could establish cloud persistence.
+author: Amr Abdelaziz
+date: 2026-09-09
+references:
+  - https://attack.mitre.org/techniques/T1136/003/
+logsource:
+  product: aws
+  service: cloudtrail
+detection:
+  selection:
+    eventSource: iam.amazonaws.com
+    eventName: CreateUser
+  condition: selection
+falsepositives:
+  - Approved IAM user provisioning through an authorized administrative workflow
+level: high
+tags:
+  - attack.persistence
+  - attack.t1136.003
