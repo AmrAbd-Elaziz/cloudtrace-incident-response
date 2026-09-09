@@ -257,6 +257,7 @@ python -m unittest discover -s tests -v
 - [Incident Response Plan](docs/INCIDENT-RESPONSE-PLAN.md)
 - [Executive Incident Report](reports/executive/EXECUTIVE-INCIDENT-REPORT.md)
 - [Technical Incident Analysis](reports/technical/INCIDENT-ANALYSIS-REPORT.md)
+- [![CloudTrace Validation](https://github.com/AmrAbd-Elaziz/cloudtrace-incident-response/   actions/workflows/cloudtrace-validation.yml/badge.svg)](https://github.com/AmrAbd-Elaziz/ cloudtrace-incident-response/actions/workflows/cloudtrace-validation.yml)
 
 ## Security Engineering Decisions
 
